@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import java.util.*;
 
+/**
+ * 导引助手的树形结构、节点、规则的测试参考类
+ */
 @RestController
 public class TreeStructureController {
     @Autowired
