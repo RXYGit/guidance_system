@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 /**
  * 导引助手的树形结构、节点、规则的测试参考类
@@ -19,9 +23,9 @@ public class TreeStructureController {
     @Autowired
     private TreeStructureService treeStructureService;
 
-    //获取树形结构
+    //获取树形结构  也包含了另外的功能 查询单个节点的信息（包含标签和属性）
     @RequestMapping("/throwNodeGetTree")
-    public Map<String, Object> selectTree(@RequestBody Map<String,String> param)  {
+    public Map<String, Object> selectTree(@RequestBody Map<String,String> param) throws NoSuchAlgorithmException {
 
         String grpId = param.get("id");
         //查询组,从而得到组的id
@@ -30,12 +34,27 @@ public class TreeStructureController {
         Map<String, Object> map = new HashMap<>();
         map.put("nodeGrpId", groupList.get(0).get("id"));
         List<Map<String, Object>> nodeList = treeStructureService.nodeQryReqMap(map);//此处会异常IndexOutOfBoundsException: Index: 0, Size: 0
-        //查询标签集合   在标签内部的实现类里查询 标签属性集合
+        //查询标签集合   在标签内部的实现类里查询 标 签属性集合
         Map<String, Object> nodeMap = nodeList.get(0);//获取一个节点，为了查询这个节点上的标签和标签属性
         nodeMap.put("tagList", treeStructureService.tagQryList(nodeMap.get("id")));
 
         //然后查询一个节点的整个树形结构
         treeStructureService.allTreeListQry(nodeMap);
+        //随机数生成方式的几种区别
+        Random random = new Random(1000);
+        System.out.println("Random随机Boolean值:"+random.nextBoolean());
+        System.out.println("Random随机Double值:"+random.nextDouble());
+
+        ThreadLocalRandom threadLocalRandom =  ThreadLocalRandom.current();
+        System.out.println("ThreadLocalRandom随机Boolean："+threadLocalRandom.nextBoolean());
+        System.out.println("ThreadLocalRandom随机数："+threadLocalRandom.nextInt(5,10));
+
+        //SecureRandom既指定了算法名称又指定了包提供程序: 系统将确定环境中是否有所请求的算法实现，是否有多个，是否有首选实现。
+        SecureRandom secureRandom= SecureRandom.getInstance("SHA1PRNG");//
+        int randNum = secureRandom.nextInt(100);
+        System.out.println("SecureRandom随机数字"+randNum);
+        System.out.println("SecureRandom随机的Boolean值"+secureRandom.nextBoolean());
+
 
         //需返回的整个map
         return nodeMap;
@@ -145,6 +164,8 @@ public class TreeStructureController {
         }
         return nodeMap;
     }
+
+
     /**
      * 节点新增的操作
      * 包含了特殊字符的新增，如双引号

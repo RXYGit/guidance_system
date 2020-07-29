@@ -13,7 +13,7 @@ import java.util.Date;
  * 自定义拦截器
  * created by rxy 2020-7-29 15:00:00
  */
-@Component
+//@Component
 public class Interceptor implements HandlerInterceptor {
     //1. HTTP 1.0 get请求  post请求 还有其他的HTTP 1.1的其他请求方式OPTIONS, PUT, DELETE, TRACE 和 CONNECT
 
