@@ -1,0 +1,38 @@
+server:
+  port: 8090
+  tomcat:
+    uri-encoding: utf-8
+
+
+
+#mysql/market
+spring:
+  datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+#      jdbc-url: jdbc:mysql://10.19.138.232:3306/market?characterEncoding=utf8&serverTimezone=GMT%2B8&allowMultiQueries=true
+#      username: sdzx
+#      password: abc123
+      url: jdbc:mysql://localhost:3306/testsql?characterEncoding=utf8&serverTimezone=GMT%2B8&allowMultiQueries=true
+      username: root
+      password: root
+
+
+mybatis:
+  type-aliases-package: com.yd.pojo
+  configuration:
+    default-statement-timeout: 30
+    map-underscore-to-camel-case: true
+    #Mybatis的字段为空值，null映射时，返回的Map中，缺少这个字段key，默认为false
+    call-setters-on-nulls: true
+  mapper-locations:
+    - classpath:static/sqlmapper/*.xml
+
+
+logging:
+    level:
+      com.yd.*: debug
+
+
+      
+
+        
