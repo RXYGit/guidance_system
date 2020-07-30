@@ -30,8 +30,9 @@ public class FlowController {
         Map<String, Object> rspMap = new HashMap<>();
         param.get("prt_subs_num");//受理的主叫号码
         List<Map<String,Object>> flowTraceList =  flowService.flowTraceQry(param);
-        for (int i = 0; i < flowTraceList.size(); i++){
-            flowTraceList.get(i).get("fl_last_node_id");//上一级的轨迹id
+        for (Map<String, Object> map : flowTraceList) {
+            map.get("fl_last_node_id");//上一级的轨迹id
+
         }
         rspMap.put("flowTraceMsg",flowTraceList);//轨迹信息
         return rspMap;

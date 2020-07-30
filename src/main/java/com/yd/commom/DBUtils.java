@@ -25,7 +25,7 @@ public class DBUtils {
 		try{
 		st = conn.createStatement();
 		rs = st.executeQuery(sql);
-		list  = resultSetToList(rs);
+		list  = resultSetToList(rs);//处理结果集为List
 		}catch (Exception e){e.printStackTrace();}
 		finally {
 			try{

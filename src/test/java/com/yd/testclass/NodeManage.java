@@ -59,6 +59,7 @@ public class NodeManage {
 
     /**
      * 查询节点选项的集合，这个选项有点疑惑，不是很明白，所以这个有问题
+     * 这个在这里实现的没有包含这个节点选项的集合中的标签和属性
      */
     @Test
     public void nodeListSelect(){
