@@ -55,7 +55,6 @@ public class TreeStructureController {
         System.out.println("SecureRandom随机数字"+randNum);
         System.out.println("SecureRandom随机的Boolean值"+secureRandom.nextBoolean());
 
-
         //需返回的整个map
         return nodeMap;
     }
