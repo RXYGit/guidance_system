@@ -1,11 +1,13 @@
 package com.yd.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
 
 public interface TreeStructureMapper {
     //查询组
-    List<Map<String, Object>> grpQryList(String grpId);
+    List<Map<String, Object>> grpQryList(@Param("grpId") String grpId);
     //查询节点集合
     List<Map<String, Object>> nodeQryReqMap(Map<String, Object> map);
     //查询标签集合

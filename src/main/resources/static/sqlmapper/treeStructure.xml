@@ -3,7 +3,7 @@
 
 <mapper namespace="com.yd.mapper.TreeStructureMapper">
 	<!--0.1 查询组 入参是一个字符串数值，出参是一个List-->
-	<select id="grpQryList" parameterType="string" resultType="java.util.Map">
+	<select id="grpQryList" parameterType="string" resultType="java.util.HashMap">
 		select a.`id`,a.`grp_type`,a.`grp_name`,a.`grp_creator`,a.`grp_is_effective` from `zyzx_sd_dy_group` a where a.`id`=#{grpId} and a.`grp_is_effective`='0'
 	</select>
 	<!--0.2 查询节点集合 入参Map,通过key获取所有属于同一个组的节点，出参同组的节点Map-->

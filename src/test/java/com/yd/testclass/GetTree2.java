@@ -16,7 +16,7 @@ public class GetTree2 {
 
 	@Test
 	public  void treeData() {
-		String groupid = "2";
+		String groupid = "1";
 		List<Map<String, Object>> groupList = DBUtils.qry("select a.`id`,a.`grp_type`,a.`grp_name`,a.`grp_creator`,a.`grp_is_effective` from `zyzx_sd_dy_group` a where a.`id`='"+groupid+"' and a.`grp_is_effective`='0';");
 		Map<String, Object> grpMap = groupList.get(0);
 
