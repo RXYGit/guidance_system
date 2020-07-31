@@ -20,7 +20,8 @@ public class TreeStructureServiceImpl implements TreeStructureService {
     @Override
     public List<Map<String, Object>> grpQryList(String grpId) {
         System.out.println("组的id:"+grpId);
-        return treeTreeStructureMapper.grpQryList(grpId);
+        List<Map<String, Object>> list = treeTreeStructureMapper.grpQryList(grpId);
+        return list;
     }
     //查询节点
     @Override

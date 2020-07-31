@@ -3,7 +3,7 @@
 
 <mapper namespace="com.yd.mapper.TreeStructureMapper">
 	<!--0.1 查询组 入参是一个字符串数值，出参是一个List-->
-	<select id="grpQryList" parameterType="string" resultType="java.util.HashMap">
+	<select id="grpQryList" parameterType="string" resultType="java.util.Map">
 		select a.`id`,a.`grp_type`,a.`grp_name`,a.`grp_creator`,a.`grp_is_effective` from `zyzx_sd_dy_group` a where a.`id`=#{grpId} and a.`grp_is_effective`='0'
 	</select>
 	<!--0.2 查询节点集合 入参Map,通过key获取所有属于同一个组的节点，出参同组的节点Map-->
@@ -85,9 +85,9 @@
                    item="params" 循环List的每条的结果集
                    collection="paramMap"  这是list的key 即为 map传过来的集合参数key -->
 		<foreach collection="paramMap" separator=";" item="params">
-		update `zyzx_sd_dy_node` a
-		    <set>
-		    	a.`node_is_effective`=#{params.node_is_effective}
+			update `zyzx_sd_dy_node` a
+			<set>
+				a.`node_is_effective`=#{params.node_is_effective}
 				<if test="params.containsKey('node_is_effective')">
 					<where>a.`id`=#{params.id}</where>
 				</if>
@@ -130,8 +130,8 @@
 		select a.`id`,a.`re_rule_id`,a.`re_param`,a.`re_accord`,a.`re_range`,a.`re_result`,a.`re_is_effective`,a.`ext1`,a.`ext2`,a.`ext3`,a.`ext4`
 		from `zyzx_sd_dy_rule_element` a
 		where a.`re_is_effective`='0' and a.`re_rule_id`=#{id}
-			<!--<if test="_parameter.containsKey('rule_start_node')">
-			</if>-->
+		<!--<if test="_parameter.containsKey('rule_start_node')">
+        </if>-->
 	</select>
 
 
